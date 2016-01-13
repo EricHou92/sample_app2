@@ -1,0 +1,102 @@
+<div class = "row">
+  <div class = "col-md-1"></div>
+  <div class = "col-md-10">
+    <div class = "row">
+      <div class = "col-md-8"></div>
+      <div class = "col-md-2" align = right>
+        <%= button_to "发布新商品", new_thing_path, :action => "new", :method => "get", :class => "btn btn-primary btn-lg" %>
+      </div>
+      <div class = "col-md-2" align = center>
+        <%= link_to "返回用户个人信息", user_path(@user), :class => "btn btn-link" %>
+      </div>      
+    </div>
+    <br/>
+    <div class = "panel panel-primary">
+      <div class = "panel-heading" align = center>
+        <p class = "title1">已发布商品列表</p>
+      </div>
+      <div class = "panel-body" style = "height: 640px">
+        <table class="table table-hover">
+          <thead>
+            <tr class = "info">
+              <th class = "text1">订单号</th>
+              <th class = "text1">商品</th>
+              <th class = "text1">类型</th>
+              <th class = "text1">成新率</th>
+              <th class = "text1">价格</th>
+              <th class = "text1">申请代售</th>
+              <th class = "text1">关闭交易</th>
+              <th class = "text1">查看详细信息</th>
+            </tr>
+          </thead>
+    
+          <tbody style = "background-color: white">
+            <% @things.each do |thing| %>
+            <tr>
+              <td class = "text1"><%= thing.id %></td>
+              <td class = "text1"><%= thing.title %></td>
+              <td>
+                <% case thing.style %>
+                <% when 1 then %>
+                <p class = "text1">家用电器</p>
+                <% when 2 then %>
+                <p class = "text1">数码产品</p>
+                <% when 3 then %>
+                <p class = "text1">衣物</p>
+                <% when 4 then %>
+                <p class = "text1">清洁用品</p>
+                <% when 5 then %>
+                <p class = "text1">办公用品</p>
+                <% when 6 then %>
+                <p class = "text1">床上用品</p>
+                <% when 7 then %>
+                <p class = "text1">书籍</p>
+                <% end %>
+              </td>
+              <td>
+                <% case thing.depreciation_rate %>
+                <% when 1 then %>
+                <p class = "text1">全新</p>
+                <% when 2 then %>
+                <p class = "text1">九九成新</p>
+                <% when 3 then %>
+                <p class = "text1">九成新</p>
+                <% when 4 then %>
+                <p class = "text1">七五成新</p>
+                <% when 5 then %>
+                <p class = "text1">六成新</p>
+                <% when 6 then %>
+                <p class = "text1">五成新</p>
+                <% when 7 then %>
+                <p class = "text1">三成新</p>
+                <% end %>
+              </td>
+              <td class = "text1"><%= thing.price %></td>
+              <td>
+                <% if thing.commission == false %>
+                <%= button_to "申请代售", thing_path(thing), :action => "update", :method => "patch", :params => {"thing[commission]" => true}, :class => "btn btn-warning" %>
+                <% elsif thing.commission == true && thing.delivery == false %>
+                <%= button_to "取消申请", thing_path(thing), :action => "update", :method => "patch", :params => {"thing[commission]" => false}, :class => "btn btn-warning" %>
+                <% else %>
+                <input type = "button" class = "btn btn-success" value = "已交付" disabled = "disabled">
+                <% end %>
+              </td>
+              <td>
+                <% if thing.delivery != true %>
+                <%= button_to "关闭交易", thing_path(thing), :action => "destroy", :method => "delete", :class => "btn btn-warning" %>
+                <% else %>
+                <input type = "button" class = "btn btn-success" value = "无法关闭" disabled = "disabled">
+                <% end %>
+              </td>
+              <td>
+                <%= link_to "查看详细信息", thing_path(thing), :class => "btn btn-link" %>
+              </td>
+            </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  <div class = "col-md-1"></div>
+</div>

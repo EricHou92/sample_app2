@@ -1,0 +1,58 @@
+<div class = "background1">
+  <br/><br/><br/><br/><br/><br/><br/><br/>
+  <div class = "row">
+    <div class = "col-md-3"></div>
+    <div class = "col-md-6">
+      <div class = "row">
+        <div class = "col-md-1"></div>
+        <div class = "col-md-11">
+          <div class = "panel panel-primary">
+            <div class = "panel-heading" align = center>
+              <p class = "title1">用户信息</p>
+            </div>
+            <div class = "panel-body">
+              <div class = "row">
+                <div class = "col-md-12">
+                  <p class = "text3">
+                    <span class = "glyphicon glyphicon-user" style = "font-size: 20"></span>
+                    <%= @user.name %>
+                  </p>
+                  <br/>
+                  <p class = "text3">
+                    <span class = "glyphicon glyphicon-earphone" style = "font-size: 20"></span>
+                    <%= @user.telephone %>
+                  </p>
+                  <br/>
+                  <p class = "text3">
+                    <span class = "glyphicon glyphicon-envelope" style = "font-size: 20"></span>
+                    <%= @user.mail %>
+                  </p>
+                  <br/>
+                </div>
+              </div>
+              <div class = "row">
+                <div class = "col-md-12" align = right>
+                  <%= link_to "修改个人信息", edit_user_path(@user), :class => "btn btn-link" %>
+                </div>
+              </div>
+            </div>
+          </div>
+          <br/><br/>
+          <div class = "row">
+            <div class = "col-md-4">
+              <%= button_to "查看已发布商品列表", published_path(@user), :action => "published", :method => "get", :class => "btn btn-primary" %>
+            </div>
+            <div class = "col-md-4">
+              <%= button_to "查看关注商品列表", collected_path(@user), :action => "collected", :method => "get", :class => "btn btn-primary" %>
+            </div>
+            <div class = "col-md-4">
+              <%= button_to "查看评论过商品列表", commented_path(@user), :action => "commented", :method => "get", :class => "btn btn-primary" %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class = "col-md-3"></div>
+  </div>
+  <br/><br/><br/><br/><br/><br/><br/><br/>
+</div>

@@ -1,0 +1,43 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Things</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Depreciation rate</th>
+      <th>Price</th>
+      <th>Style</th>
+      <th>Description</th>
+      <th>Commission</th>
+      <th>Delivery</th>
+      <th>Erasure</th>
+      <th>User</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @things.each do |thing| %>
+      <tr>
+        <td><%= thing.title %></td>
+        <td><%= thing.depreciation_rate %></td>
+        <td><%= thing.price %></td>
+        <td><%= thing.style %></td>
+        <td><%= thing.description %></td>
+        <td><%= thing.commission %></td>
+        <td><%= thing.delivery %></td>
+        <td><%= thing.erasure %></td>
+        <td><%= thing.user_id %></td>
+        <td><%= link_to 'Show', thing %></td>
+        <td><%= link_to 'Edit', edit_thing_path(thing) %></td>
+        <td><%= link_to 'Destroy', thing, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Thing', new_thing_path %>

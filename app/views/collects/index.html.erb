@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Collects</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>User</th>
+      <th>Thing</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @collects.each do |collect| %>
+      <tr>
+        <td><%= collect.user_id %></td>
+        <td><%= collect.thing_id %></td>
+        <td><%= link_to 'Show', collect %></td>
+        <td><%= link_to 'Edit', edit_collect_path(collect) %></td>
+        <td><%= link_to 'Destroy', collect, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Collect', new_collect_path %>

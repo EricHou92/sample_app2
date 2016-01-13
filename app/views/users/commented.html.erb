@@ -1,0 +1,105 @@
+<div class = "row">
+  <div class = "col-md-1"></div>
+  <div class = "col-md-10">
+    <p align = right>
+      <%= link_to "返回用户个人信息", user_path(@user), :class => "btn btn-link" %>
+    </p>
+    <div class = "panel panel-primary">
+      <div class = "panel-heading" align = center>
+        <p class = "title1">评论过商品列表</p>
+      </div>
+      <div class = "panel-body" style = "height: 640px">
+        <table class="table table-hover">
+          <thead>
+            <tr class = "info">
+              <th class = "text1">商品</th>
+              <th class = "text1">类型</th>
+              <th class = "text1">成新率</th>
+              <th class = "text1">价格</th>
+              <th class = "text1">评分</th>
+              <th class = "text1">删除评论</th>
+              <th class = "text1">查看详细信息</th>
+            </tr>
+          </thead>
+    
+          <tbody style = "background-color: white">
+            <% @comments.each do |comment| %>
+            <% thing = Thing.find(comment.thing_id) %>
+            <tr>
+              <td class = "text1"><%= thing.title %></td>
+              <td>
+                <% case comment.rating %>
+                <% when 1 then %>
+                <p class = "text1">家用电器</p>
+                <% when 2 then %>
+                <p class = "text1">数码产品</p>
+                <% when 3 then %>
+                <p class = "text1">衣物</p>
+                <% when 4 then %>
+                <p class = "text1">清洁用品</p>
+                <% when 5 then %>
+                <p class = "text1">办公用品</p>
+                <% when 6 then %>
+                <p class = "text1">床上用品</p>
+                <% when 7 then %>
+                <p class = "text1">书籍</p>
+                <% end %>
+              </td>
+              <td>
+                <% case thing.depreciation_rate %>
+                <% when 1 then %>
+                <p class = "text1">全新</p>
+                <% when 2 then %>
+                <p class = "text1">九九成新</p>
+                <% when 3 then %>
+                <p class = "text1">九成新</p>
+                <% when 4 then %>
+                <p class = "text1">七五成新</p>
+                <% when 5 then %>
+                <p class = "text1">六成新</p>
+                <% when 6 then %>
+                <p class = "text1">五成新</p>
+                <% when 7 then %>
+                <p class = "text1">三成新</p>
+                <% end %>
+              </td>
+              <td class = "text1"><%= thing.price %></td>
+              <td class = "text1">
+                <% case thing.depreciation_rate %>
+                <% when 1 then %>
+                <span class = "glyphicon glyphicon-star"></span>
+                <% when 2 then %>
+                <span class = "glyphicon glyphicon-star"></span>
+                <span class = "glyphicon glyphicon-star"></span>
+                <% when 3 then %>
+                <span class = "glyphicon glyphicon-star"></span>
+                <span class = "glyphicon glyphicon-star"></span>
+                <span class = "glyphicon glyphicon-star"></span>
+                <% when 4 then %>
+                <span class = "glyphicon glyphicon-star"></span>
+                <span class = "glyphicon glyphicon-star"></span>
+                <span class = "glyphicon glyphicon-star"></span>
+                <span class = "glyphicon glyphicon-star"></span>
+                <% when 5 then %>
+                <span class = "glyphicon glyphicon-star"></span>
+                <span class = "glyphicon glyphicon-star"></span>
+                <span class = "glyphicon glyphicon-star"></span>
+                <span class = "glyphicon glyphicon-star"></span>
+                <span class = "glyphicon glyphicon-star"></span>
+                <% end %>
+              </td>
+              <td>
+                <%= button_to "删除评论", comment_path(comment), :action => "destroy", :method => "delete", :class => "btn btn-warning" %>
+              </td>
+              <td>
+                <%= link_to "查看详细信息", thing_path(thing), :class => "btn btn-link" %>
+              </td>
+            </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  <div class = "col-md-2"></div>
+</div>

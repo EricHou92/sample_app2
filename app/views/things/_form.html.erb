@@ -1,0 +1,87 @@
+<%= form_for(@thing, :multipart => true) do |f| %>
+  <div class = "row">
+    <div class = "col-md-4">
+      <div class = "form-group" align = "right">
+        <label for = "title" class = "text3">名称：</label>
+      </div>
+    </div>
+    <div class = "col-md-8">
+      <div class = "form-group">
+        <%= f.text_field :title, :placeholder => "名称", :class => "form-control" %>
+      </div>
+    </div>
+  </div>
+  
+  <div class = "row">
+    <div class = "col-md-4">
+      <div class = "form-group" align = right>
+        <label for = "depreciation_rate" class = "text3">成新率：</label>
+      </div>
+    </div>
+    <div class = "col-md-8">
+      <div class = "form-group">
+        <%= f.select :depreciation_rate, options_for_select([["请选择成新率"], ["全新", 1], ["九九成新", 2], ["九成新", 3], ["七五成新", 4], ["六成新", 5], ["五成新", 6], ["三成新", 7], ["一成新", 8]]) %>
+        </div>
+      </div>
+    </div>
+  
+  <div class = "row">
+    <div class = "col-md-4">
+      <div class = "form-group" align = right>
+        <label for = "price" class = "text3">价格：</label>
+      </div>
+    </div>
+    <div class = "col-md-8">
+      <div class = "form-group">
+        <%= f.text_field :price, :placeholder => "价格", :class => "form-control" %>
+      </div>
+    </div>
+  </div>
+  
+  <div class = "row">
+    <div class = "col-md-4">
+      <div class = "form-group" align = right>
+        <label for = "style" class = "text3">类型：</label>
+      </div>
+    </div>
+    <div class = "col-md-8">
+      <div class = "form-group">
+        <%= f.select :style, options_for_select([["请选择物品类型"], ["家用电器", 1], ["数码产品", 2], ["衣物", 3], ["清洁用品", 4], ["办公用品", 5], ["床上用品", 6], ["书籍", 7]]) %>
+      </div>
+    </div>
+  </div> 
+
+  <div class = "row">
+    <div class = "col-md-4">
+      <div class = "form-group" align = right>
+        <label for = "description" class = "text3">详细描述：</label>
+      </div>
+    </div>
+    <div class = "col-md-8">
+      <div class = "form-group">
+        <%= f.text_area :description, :placeholder => "详细描述", :row => 3, :class => "form-control" %>
+      </div>
+    </div>
+  </div> 
+
+  <div class = "row">
+    <div class = "col-md-4">
+      <div class = "form-group" align = right>
+        <label for = "picture" class = "text3">上传照片：</label>
+      </div>
+    </div>
+    <div class = "col-md-8">
+      <div class = "form-group">
+        <%= f.file_field :picture %>
+      </div>
+    </div>
+  </div> 
+
+  <div class = "row">
+    <div class = "col-md-9"></div>
+    <div class = "col-md-3" align = right>
+      <%= f.submit :value => "确认发布", :class => "btn btn-primary" %>
+    </div>
+  </div>
+
+<% end %>

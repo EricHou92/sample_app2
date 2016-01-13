@@ -1,0 +1,241 @@
+<div class = "row">
+  <div class = "col-md-10"></div>
+  <div class = "col-md-2">
+    <%= link_to "返回代售物品列表", root_path, :class => "btn btn-link" %>
+  </div>
+</div>
+<div class = "row">
+  <div class = "col-md-12" align = center>
+    <h1 style = "font-family: Microsoft YaHei">出售：<%= @thing.title %></h1>
+  </div>
+</div>
+<br/>
+<div class = "row">
+  <div class = "col-md-7">
+    <div class = "row">
+      <div class = "col-md-3">
+        <div class = "panel panel-primary" align = center>
+          <div class = "panel-heading">
+            <p class = "text1">价格（元）</p>
+          </div>
+          <div class = "panel-body">
+            <p class = "text1"><%= @thing.price %></p>
+          </div>
+        </div>
+      </div>
+
+      <div class = "col-md-4">
+        <div class = "panel panel-primary" align = center>
+          <div class = "panel-heading">
+            <p class = "text1">类型</p>
+          </div>
+          <div class = "panel-body">
+            <% case @thing.style %>
+            <% when 1 then %>
+            <p class = "text1">家用电器</p>
+            <% when 2 then %>
+            <p class = "text1">数码产品</p>
+            <% when 3 then %>
+            <p class = "text1">衣物</p>
+            <% when 4 then %>
+            <p class = "text1">清洁用品</p>
+            <% when 5 then %>
+            <p class = "text1">办公用品</p>
+            <% when 6 then %>
+            <p class = "text1">床上用品</p>
+            <% when 7 then %>
+            <p class = "text1">书籍</p>
+            <% end %>
+          </div>
+        </div>
+      </div>
+
+      <div class = "col-md-5">
+        <div class = "panel panel-primary" align = center>
+          <div class = "panel-heading">
+            <p class = "text1">成新率</p>
+          </div>
+          <div class = "panel-body">
+            <% case @thing.depreciation_rate %>
+            <% when 1 then %>
+            <p class = "text1">
+              <span class="glyphicon glyphicon-star" style = "font-size: 16"></span>
+              <span class="glyphicon glyphicon-star" style = "font-size: 16"></span>
+              <span class="glyphicon glyphicon-star" style = "font-size: 16"></span>
+              <span class="glyphicon glyphicon-star" style = "font-size: 16"></span>
+            全新</p>
+            <% when 2 then %>
+            <p class = "text1">
+              <span class="glyphicon glyphicon-star" style = "font-size: 16"></span>
+              <span class="glyphicon glyphicon-star" style = "font-size: 16"></span>
+              <span class="glyphicon glyphicon-star" style = "font-size: 16"></span>
+              <span class="glyphicon glyphicon-star-empty" style = "font-size: 16"></span>
+            九九成新</p>
+            <% when 3 then %>
+            <p class = "text1">
+              <span class="glyphicon glyphicon-star" style = "font-size: 16"></span>
+              <span class="glyphicon glyphicon-star" style = "font-size: 16"></span>
+              <span class="glyphicon glyphicon-star" style = "font-size: 16"></span>
+            九成新</p>
+            <% when 4 then %>
+            <p class = "text1">
+              <span class="glyphicon glyphicon-star" style = "font-size: 16"></span>
+              <span class="glyphicon glyphicon-star" style = "font-size: 16"></span>
+              <span class="glyphicon glyphicon-star-empty" style = "font-size: 16"></span>
+            七五成新</p>
+            <% when 5 then %>
+            <p class = "text1">
+              <span class="glyphicon glyphicon-star" style = "font-size: 16"></span>
+              <span class="glyphicon glyphicon-star" style = "font-size: 16"></span>
+            六成新</p>
+              <% when 6 then %>
+            <p class = "text1">
+              <span class="glyphicon glyphicon-star" style = "font-size: 16"></span>
+              <span class="glyphicon glyphicon-star-empty" style = "font-size: 16"></span>
+            五成新</p>
+            <% when 7 then %>
+            <p class = "text1">
+              <span class="glyphicon glyphicon-star" style = "font-size: 16"></span>
+            三成新</p>
+            <% when 8 then %>
+            <p class = "text1">
+              <span class="glyphicon glyphicon-star-empty" style = "font-size: 16"></span>
+            一成新</p>
+            <% end %>        
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class = "row">
+      <div class = "col-md-12">
+        <div class = "panel panel-primary">
+          <div class = "panel-heading" align = center>
+            <p class = "text1">详细描述</p>
+          </div>
+          <div class = "panel-body">
+            <p class = "text1" style = "height: 200px"><%= @thing.description %></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+    <div class = "row">
+      <div class = "col-md-12">
+        <div class = "panel panel-primary" align = center>
+          <div class = "panel-heading">
+            <p class = "text1">图片</p>
+          </div>
+          <div class = "panel-body">
+            <%=image_tag("/" + @thing.picture_path.to_s, :width => "80%", :alt => "卖家未上传图片") %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class = "col-md-5">
+    <div class = "row">
+      <div class = "col-md-12">
+        <div class = "panel panel-primary">
+          <div class = "panel-heading" align = center>
+            <p class = "text1">卖家个人信息</p>
+          </div>
+          <div class = "panel-body">
+            <p class = "text1">昵称：   <%= @user.name %></p>
+            <p class = "text1">手机号： <%= @user.telephone %></p>
+            <p class = "text1">电子邮件：<%= @user.mail %></p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class = "row">
+      <div class = "col-md-12">
+        <%= form_for(@comment, :controller => "comments", :action => "new", :method => "post") do |f| %>
+        <div class = "panel panel-primary">
+          <div class = "panel-heading">
+            <%= f.radio_button :rating, 1, :style => "height: 14px; width: 14px;" %>
+            <span class = "glyphicon glyphicon-star"></span>
+            <%= f.radio_button :rating, 2,:style => "height: 14px; width: 14px;" %>
+            <span class = "glyphicon glyphicon-star"></span>
+            <span class = "glyphicon glyphicon-star"></span>
+            <%= f.radio_button :rating, 3, :style => "height: 14px; width: 14px;" %>
+            <span class = "glyphicon glyphicon-star"></span>
+            <span class = "glyphicon glyphicon-star"></span>
+            <span class = "glyphicon glyphicon-star"></span>
+            <%= f.radio_button :rating, 4, :style => "height: 14px; width: 14px;" %>
+            <span class = "glyphicon glyphicon-star"></span>
+            <span class = "glyphicon glyphicon-star"></span>
+            <span class = "glyphicon glyphicon-star"></span>
+            <span class = "glyphicon glyphicon-star"></span>
+            <%= f.radio_button :rating, 5 ,:style => "height: 14px; width: 14px;" %>
+            <span class = "glyphicon glyphicon-star"></span>
+            <span class = "glyphicon glyphicon-star"></span>
+            <span class = "glyphicon glyphicon-star"></span>
+            <span class = "glyphicon glyphicon-star"></span>
+            <span class = "glyphicon glyphicon-star"></span>
+          </div>
+          <div class = "panel-body" class = "form-group">
+            <%= f.text_area :content, :placeholder => "发表评论", :rows => 5, :class => "form-control" %>
+          </div>
+        </div>
+      </div>
+    </div>
+      
+    <div class = "row">
+      <div class = "col-md-6" align = center>
+        <%= f.hidden_field :thing_id, :value => @thing.id %>
+        <%= f.submit :value => "发表评论", :class => "btn btn-primary" %>
+        <% end %>
+      </div>
+      <div class = "col-md-6" align = center>
+        <%= button_to("关注一下", collects_path, :action => "new", :method => "post", :params => {"collect[thing_id]" => @thing.id}, :class => "btn btn-primary") %>
+      </div>
+    </div>
+
+    <div class = "row">
+      <div class = "col-md-12">
+        <div class = "panel panel-primary">
+          <div class = "panel-heading" align = center>
+            <p class = "text1">评论区</p>
+          </div>
+          <div class = "panel-body">
+            <ul class = "list-group">
+              <% @comments.each do |comment| %>
+              <li class="list-group-item list-group-item-primary">
+                <% case comment.rating %>
+                <% when 1 then %>
+                <span class = "glyphicon glyphicon-star" style = "font-size:16"></span>
+                <% when 2 then %>
+                <span class = "glyphicon glyphicon-star" style = "font-size:16"></span>
+                <span class = "glyphicon glyphicon-star" style = "font-size:16"></span>
+                <% when 3 then %>
+                <span class = "glyphicon glyphicon-star" style = "font-size:16"></span>
+                <span class = "glyphicon glyphicon-star" style = "font-size:16"></span>
+                <span class = "glyphicon glyphicon-star" style = "font-size:16"></span>
+                <% when 4 then %>
+                <span class = "glyphicon glyphicon-star" style = "font-size:16"></span>
+                <span class = "glyphicon glyphicon-star" style = "font-size:16"></span>
+                <span class = "glyphicon glyphicon-star" style = "font-size:16"></span>
+                <span class = "glyphicon glyphicon-star" style = "font-size:16"></span>
+                <% when 5 then %>
+                <span class = "glyphicon glyphicon-star" style = "font-size:16"></span>
+                <span class = "glyphicon glyphicon-star" style = "font-size:16"></span>
+                <span class = "glyphicon glyphicon-star" style = "font-size:16"></span>
+                <span class = "glyphicon glyphicon-star" style = "font-size:16"></span>
+                <span class = "glyphicon glyphicon-star" style = "font-size:16"></span>
+                <% end %>
+                <br/><br/>
+                <p class = "text1"><%= comment.content %></p>
+                <p class = "text1" align = right><%= User.find(comment.user_id).name %></p>
+                <p class = "text1" align = right><%= comment.created_at.to_s %></p>
+              </li>
+              <% end %>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

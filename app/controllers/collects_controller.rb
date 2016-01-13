@@ -24,8 +24,6 @@ class CollectsController < ApplicationController
   # POST /collects
   # POST /collects.json
   def create
-    session[:current_user_id] = 1 # 测试状态，登陆用户ID为1
-
     @collect_params = params.require(:collect).permit(:thing_id)
     @collect_params.store(:user_id, session[:current_user_id]) # 当前用户ID
     @collect = Collect.new(@collect_params)

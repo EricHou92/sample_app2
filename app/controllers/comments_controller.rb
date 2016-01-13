@@ -24,9 +24,7 @@ class CommentsController < ApplicationController
   # POST /comments
   # POST /comments.json
   def create
-    session[:current_user_id] = 1 # 测试状态，登陆用户ID为1
-
-    @comment_params = params.require(:comment).permit(:rating, :content, :thing_id)
+     @comment_params = params.require(:comment).permit(:rating, :content, :thing_id)
     @comment_params.store(:user_id, session[:current_user_id]) # 当前用户ID
     @comment = Comment.new(@comment_params)
     if @comment.save
